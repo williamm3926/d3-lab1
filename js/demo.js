@@ -21,7 +21,9 @@ d3.select('#demo-1')
 
 // TODO: change the text above to add your name
 // TODO: change the color to something else you like // keep in mind color contrast
-
+d3.select('#demo-1')
+.style('color', 'purple')
+.text('My name is...')
 
 // Create and append new elements
 d3.select('#demo-1')
@@ -30,6 +32,11 @@ d3.select('#demo-1')
     .style('background-color', 'lightgray');
 
 // TODO: append a new element with your favorite food and style it with a different background color
+d3.select('#demo-1')
+    .append('p')
+    .text('peanuts are my favorite food')
+    .style('background-color', '#ffffff');
+
 
 // ============================================================================
 // SECTION 2: DATA BINDING - The Core D3 Pattern 
@@ -61,6 +68,19 @@ d3.select('#demo-2')
 // TODO: sample electricity prices instead of gas and create rectangles instead of circles; make the color of the rectangles green;
 const electricityPrices = sampledData.map(item => parseFloat(item.elec));
 // YOUR CODE GOES HERE 
+
+d3.select('#demo-2')
+    .append('svg')
+    .attr('width', 400)
+    .attr('height', 100)
+    .selectAll('rect')
+    .data(electricityPrices)
+    .join('rect')
+    .attr('x', (d, i) => i*60+30)
+    .attr('y', d => 100 - d*100)
+    .attr('width', 20)
+    .attr('height', d => d*100)
+    .attr('fill', 'green');
 
 // Remember that circle needs radius (r) and center (cx, cy) to create it,
 // while rectangles need x, y, width, and height. You can use the electricity price to determine the height of the rectangle and set a fixed width.
